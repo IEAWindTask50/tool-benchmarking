@@ -1,0 +1,4 @@
+,case,name,longitude,latitude,altitude,input_ts_fn,sim_pars_fn,price_fn,price_col,H2_demand_col
+0,Europe,France_good_wind,-0.864258,48.744116,302,hyd_input/input_ts_France_good_wind.csv,hyd_input/hpp_pars.yml,hyd_input/2030-EL_PRICE.csv,FR_R,hyd_input/H2_demand.csv
+1,Europe,Germany_good_wind,7.873535,53.287111,5,hyd_input/input_ts_Germany_good_wind.csv,hyd_input/hpp_pars.yml,hyd_input/2030-EL_PRICE.csv,DE_NW,hyd_input/H2_demand.csv
+2,Europe,Denmark_good_wind,8.594398,56.227322,85,hyd_input/input_ts_Denmark_good_wind.csv,hyd_input/hpp_pars.yml,hyd_input/2030-EL_PRICE.csv,DK_W,hyd_input/H2_demand.csv

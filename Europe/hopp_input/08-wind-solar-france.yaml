@@ -1,0 +1,14 @@
+name: "france"
+
+# SiteInfo
+site: !include france.yaml
+
+# Technologies
+technologies:
+  pv:
+    system_capacity_kw: 223000
+  wind:
+    num_turbines: 25
+    turbine_rating_kw: 10000
+  grid:
+    interconnect_kw: 300000
