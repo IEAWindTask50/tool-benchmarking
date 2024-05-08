@@ -8,20 +8,30 @@ import pandas as pd
 
 #%% WIND
 
-hopp_ref_wind_path = r"C:\Sandbox\Repo\NREL\HOPP\resource_files\wind\35.2018863_-101.945027_windtoolkit_2012_60min_80m_100m.srw"
+hopp_ref_wind_path = r"/Users/kbrunik/github/tool-benchmarking/Europe/hopp_input/france.srw"
+#"C:\Sandbox\Repo\NREL\HOPP\resource_files\wind\35.2018863_-101.945027_windtoolkit_2012_60min_80m_100m.srw"
 hopp_ref_df = pd.read_csv(hopp_ref_wind_path, skiprows=[0,1,3,4])
 
-hopp_path = r"C:\Sandbox\Repo\NREL\HOPP\resource_files\wind\france.srw"
+hopp_path = r"/Users/kbrunik/github/tool-benchmarking/Europe/hopp_input/france-2.yaml" #"C:\Sandbox\Repo\NREL\HOPP\resource_files\wind\france.srw"
 
-hyd_wind_path = r"C:\Sandbox\Repo\TOPFARM\hydesign\hydesign\examples\Europe\GWA2\input_ts_France_good_wind.csv"
+hyd_wind_path = r"/Users/kbrunik/github/tool-benchmarking/Europe/hyd_input/input_ts_France_good_wind.csv"
+#"C:\Sandbox\Repo\TOPFARM\hydesign\hydesign\examples\Europe\GWA2\input_ts_France_good_wind.csv"
 hyd_df = pd.read_csv(hyd_wind_path)
 hyd_df = hyd_df.truncate(after=8759)
 
 hyd_2_hopp_wind_map = {'temp_air_1': 'Temperature',
                        'WS_50': 'Speed',
                       'WD_50': 'Direction',
+                      'temp_air_1': 'Temperature',
                       'WS_100': 'Speed.1', 
-                      'WD_100': 'Direction.1'} ## The pressures are not in HyDeisgn
+                      'WD_100': 'Direction.1',
+                      'temp_air_1': 'Temperature',
+                      'WS_150': 'Speed.2', 
+                      'WD_150': 'Direction.2',
+                      'temp_air_1': 'Temperature',
+                      'WS_200': 'Speed.3', 
+                      'WD_200': 'Direction.3',
+                      } ## The pressures are not in HyDeisgn
 
 hopp_df = hopp_ref_df.copy()
 for k, v in hyd_2_hopp_wind_map.items():

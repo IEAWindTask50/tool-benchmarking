@@ -7,8 +7,31 @@ site: !include france.yaml
 technologies:
   pv:
     system_capacity_kw: 223000
-  wind:
+  wind: # FLORIS
     num_turbines: 25
-    turbine_rating_kw: 10000
+    turbine_rating_kw: 10000.0
+    model_name: floris
+    timestep: [0, 8760]
+    floris_config: hopp_input/floris_input_lbw.yaml
+  battery:
+    system_capacity_kwh: 300000 #4hr
+    system_capacity_kw: 75000
+    initial_SOC: 20.0
+    minimum_SOC: 20.0
+    maximum_SOC: 100.0
   grid:
     interconnect_kw: 300000
+
+config:
+  dispatch_options:
+    battery_dispatch: simple
+    solver: cbc
+    n_look_ahead_periods: 48
+    grid_charging: true
+    pv_charging_only: false
+    include_lifecycle_count: false
+  cost_info: # Conversion of hpp_pars.yml from Euro to $
+    wind_installed_cost_mw: 964908.00
+    solar_installed_cost_mw: 246587.60
+    storage_installed_cost_mwh: 48245.40
+    storage_installed_cost_mw: 41276.62 
