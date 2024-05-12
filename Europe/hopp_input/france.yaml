@@ -25,10 +25,10 @@ data:
       - [708.14, 0.0]
   urdb_label: "5ca4d1175457a39b23b3d45e"
 
-solar_resource_file: "/Users/kbrunik/github/tool-benchmarking//Europe/hopp_input/france.csv"
-wind_resource_file: "/Users/kbrunik/github/tool-benchmarking/Europe/hopp_input/france.srw"
+solar_resource_file: "/home/cbay/tool-benchmarking/Europe/hopp_input/france.csv"
+wind_resource_file: "/home/cbay/tool-benchmarking/Europe/hopp_input/france.srw"
 wave_resource_file: ""
-grid_resource_file: "/Users/kbrunik/github/tool-benchmarking/Europe/hopp_input/france-price.csv" #Assumed in $/MWh (ppa_price defaults to 0.001 for converting to $/kWh - simulation in kW)
+grid_resource_file: "/home/cbay/tool-benchmarking/Europe/hopp_input/france-price.csv" #Assumed in $/MWh (ppa_price defaults to 0.001 for converting to $/kWh - simulation in kW)
 hub_height: 165
 capacity_hours: []
 desired_schedule: []
