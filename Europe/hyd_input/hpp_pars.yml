@@ -18,9 +18,9 @@ hh_ref: 100
 p_rated_ref: 5.0 #[MW] 
 
 # Degradation
-wpp_efficiency: 1
+wpp_efficiency: 0.872
 wind_deg_yr: [0, 25]
-wind_deg: [0, 0.25] #25yr * 1%/yr
+wind_deg: [0, 0] #25yr * 1%/yr
 share_WT_deg_types: 0.5
 
 # --------------------------------------------------------------------------------------------
@@ -36,8 +36,8 @@ land_use_per_solar_MW: 0.01226 # Danish energy agency
 tracking: 'No' # 'single_axis'  #
 
 # Degradation
-pv_deg_yr: [0,    1,   25]
-pv_deg: [0.03, 0.03, 0.28] #0.03 intial + 25yr * 1%/yr
+pv_deg_yr: [0,   25]
+pv_deg: [0, 0] #0.03 intial + 25yr * 1%/yr
 
 # --------------------------------------------------------------------------------------------
 # Battery
@@ -107,24 +107,24 @@ land_cost: 300_000  #  [Euro/km**2] from Hybridize imputs 6-12k Euro/acre. 1km2 
 # --------------------------------------------------------------------------------------------
 # Financial and Economic data
 # --------------------------------------------------------------------------------------------
-wind_WACC: 0.052    # Markup of after tax WACC for onshore WT
-solar_WACC: 0.048   # After tax WACC for solar PV
-battery_WACC: 0.080 # After tax WACC for stationary storge li-ion batteries
-tax_rate: 0.22      # Corporate tax rate
-ptg_WACC: 0.07      # After tax WACC for P2H plant
+wind_WACC: 0.06    # Markup of after tax WACC for onshore WT
+solar_WACC: 0.06   # After tax WACC for solar PV
+battery_WACC: 0.06 # After tax WACC for stationary storge li-ion batteries
+tax_rate: 0.25      # Corporate tax rate
+ptg_WACC: 0.06      # After tax WACC for P2H plant
 
 # Early CAPEX payment, or phasing 
 phasing_yr: [-1,0]
-phasing_CAPEX: [1,1] # shares will be normalized to sum the CAPEX
+phasing_CAPEX: [0,1] # shares will be normalized to sum the CAPEX
 
 # Inflation will be linearly interpolated at integer year values
-inflation_yr: [-3,    0,    1,   25]
-inflation: [ 0.10, 0.10, 0.06, 0.06]
+inflation_yr: [0,   25]
+inflation: [ 0.02, 0.02]
 ref_yr_inflation: 0 # inflation index is computed with respect to this year
 
 # depreciation
 depreciation_yr: [0, 25]
-depreciation: [0, 1]
+depreciation: [0, 0]
 
 
 # --------------------------------------------------------------------------------------------
