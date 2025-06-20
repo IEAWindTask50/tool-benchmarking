@@ -1,0 +1,94 @@
+G_MW: 2000.0
+year: '2012'
+N_life: 25
+wind_turbine_cost: 1098000
+wind_civil_works_cost: 0
+wind_fixed_onm_cost: 25800.0
+wind_variable_onm_cost: 0
+d_ref: 196.0
+hh_ref: 115.0
+p_rated_ref: 6.0
+wpp_efficiency: 0.95
+wind_deg_yr:
+- 0
+- 25
+wind_deg:
+- 0
+- 0
+share_WT_deg_types: 0
+solar_PV_cost: 991000
+solar_hardware_installation_cost: 0
+solar_inverter_cost: 0
+solar_fixed_onm_cost: 17200.0
+land_use_per_solar_MW: 0
+tracking: 'No'
+pv_deg_yr:
+- 0
+- 25
+pv_deg:
+- 0
+- 0
+battery_energy_cost: 158000
+battery_power_cost: 212000
+battery_BOP_installation_commissioning_cost: 0
+battery_control_system_cost: 0
+battery_energy_onm_cost: 9250.0
+battery_depth_of_discharge: 0.8
+battery_charge_efficiency: 0.98
+battery_price_reduction_per_year: 0
+min_LoH: 0.7
+n_full_power_hours_expected_per_day_at_peak_price: 0
+peak_hr_quantile: 0
+price_H2: 5
+storage_eff: 0.9
+ptg_deg: 0.99
+hhv: 39.3
+water_consumption: 9.4
+electrolyzer_capex_cost: 480000
+electrolyzer_opex_cost: 9600
+electrolyzer_power_electronics_cost: 0
+water_cost: 4
+water_treatment_cost: 2
+H2_storage_capex_cost: 300
+H2_storage_opex_cost: 3
+H2_transportation_cost: 5
+H2_transportation_distance: 0
+penalty_factor_H2: 0
+electrolyzer_eff_curve_name: PEM electrolyzer simple
+min_power_standby: 0.1
+ramp_up_limit: 50
+ramp_down_limit: 50
+hpp_BOS_soft_cost: 0
+hpp_grid_connection_cost: 50000
+land_cost: 0
+wind_WACC: 0.06
+solar_WACC: 0.06
+battery_WACC: 0.06
+tax_rate: 0.25
+ptg_WACC: 0.06
+phasing_yr:
+- -1
+- 0
+phasing_CAPEX:
+- 0
+- 1
+inflation_yr:
+- 0
+- 25
+inflation:
+- 0.02
+- 0.02
+ref_yr_inflation: 0
+depreciation_yr:
+- 0
+- 25
+depreciation:
+- 0
+- 0
+era5_zarr: /groups/reanalyses/era5/app/era5.zarr
+ratio_gwa_era5: /groups/INP/era5/ratio_gwa2_era5.nc
+era5_ghi_zarr: /groups/INP/era5/ghi.zarr
+elevation_fn: /groups/INP/era5/SRTMv3_plus_ViewFinder_coarsen.nc
+p_rated: 6.0
+d: 196.0
+hh: 115.0
