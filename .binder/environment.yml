@@ -1,0 +1,12 @@
+name: hydesign_and_hopp
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - smt=2.9.2
+  - numpy>=2.0
+  - pip:
+    - hydesign @ git+https://gitlab.windenergy.dtu.dk/TOPFARM/HyDesign.git
+    - hopp @ git+https://github.com/NREL/HOPP.git
+
