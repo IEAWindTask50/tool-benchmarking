@@ -9,7 +9,7 @@ technologies:
     system_capacity_kw: 223000
   wind: # FLORIS
     num_turbines: 25
-    turbine_rating_kw: 10000.0
+    turbine_rating_kw: 5000.0
     model_name: floris
     timestep: [0, 8760]
     floris_config: hopp_input/floris_input_lbw.yaml
@@ -31,7 +31,10 @@ config:
     pv_charging_only: false
     include_lifecycle_count: false
   cost_info: # Conversion of hpp_pars.yml from Euro to $
-    wind_installed_cost_mw: 964908.00
-    solar_installed_cost_mw: 246587.60
-    storage_installed_cost_mwh: 48245.40
-    storage_installed_cost_mw: 41276.62 
+    wind_installed_cost_mw: 900000
+    solar_installed_cost_mw: 230000
+    storage_installed_cost_mwh: 45000
+    storage_installed_cost_mw: 38500
+    wind_om_per_kw: 12.6
+    pv_om_per_kw:  4.5 
+    battery_om_per_kw: 0

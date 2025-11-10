@@ -21,7 +21,7 @@ system_costs:
   om_replacement_cost_escal: 0
 system_use_lifetime_output: 0
 financial_parameters:
-  inflation_rate: 2.5
+  inflation_rate: 0.025
   real_discount_rate: 6.4
 cp_capacity_credit_percent:
   - 0
