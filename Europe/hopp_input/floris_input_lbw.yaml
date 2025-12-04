@@ -137,7 +137,7 @@ farm:
   # - 3960.0
 
   turbine_type:
-  - nrel_5MW
+  - !include iea_10MW.yaml
 
 wake:
   model_strings:
@@ -149,7 +149,7 @@ wake:
   enable_secondary_steering: false
   enable_yaw_added_recovery: false
   enable_transverse_velocities: false
-  enable_active_wake_mixing: true
+  enable_active_wake_mixing: false
 
   wake_deflection_parameters:
     gauss:

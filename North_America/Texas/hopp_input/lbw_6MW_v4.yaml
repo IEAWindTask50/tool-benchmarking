@@ -1,6 +1,7 @@
 turbine_type: lbw_6MW
 hub_height: 115.0
 rotor_diameter: 196.0
+generator_efficiency: 1.0
 TSR: 9.0
 operation_model: cosine-loss
 power_thrust_table:

@@ -9,7 +9,7 @@ technologies:
     system_capacity_kw: 223000
   wind: # FLORIS
     num_turbines: 25
-    turbine_rating_kw: 5000.0
+    turbine_rating_kw: 10000.0
     model_name: floris
     timestep: [0, 8760]
     floris_config: hopp_input/floris_input_lbw.yaml

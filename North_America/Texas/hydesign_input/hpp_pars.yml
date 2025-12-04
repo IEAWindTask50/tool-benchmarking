@@ -1,17 +1,17 @@
 # --------------------------------------------------------------------------------------------
 # HPP Global
 # --------------------------------------------------------------------------------------------
-G_MW: 300 # Grid capacity
+G_MW: 2000 # Grid capacity
 year: '2012' # Single representative year
 N_life: 25
 
 # --------------------------------------------------------------------------------------------
 # Wind
 # --------------------------------------------------------------------------------------------
-wind_turbine_cost: 640_000  # [Euro/MW] for reference turbine
-wind_civil_works_cost: 260_000  # [Euro/MW]
-wind_fixed_onm_cost: 12_600  # Wind fixed O&M cost per year [Euro/MW /year]
-wind_variable_onm_cost: 1.35 #[EUR/MWh_e] Danish Energy Agency
+wind_turbine_cost: 1_098_000  # [Euro/MW] for reference turbine
+wind_civil_works_cost: 0  # [Euro/MW]
+wind_fixed_onm_cost: 25_800  # Wind fixed O&M cost per year [Euro/MW /year]
+wind_variable_onm_cost: 0 #[EUR/MWh_e] Danish Energy Agency
 
 d_ref: 145
 hh_ref: 100
@@ -26,10 +26,10 @@ share_WT_deg_types: 0.5
 # --------------------------------------------------------------------------------------------
 # PV 
 # --------------------------------------------------------------------------------------------
-solar_PV_cost: 110_000   # [Euro/MW DC]
-solar_hardware_installation_cost: 100_000  # [Euro/MW DC]
-solar_inverter_cost: 20_000 #[Euro/MW]
-solar_fixed_onm_cost: 4_500  # Solar O&M cost per year [Euro/MW] DC
+solar_PV_cost: 991_000   # [Euro/MW DC]
+solar_hardware_installation_cost: 0  # [Euro/MW DC]
+solar_inverter_cost: 0 #[Euro/MW]
+solar_fixed_onm_cost: 17_200  # Solar O&M cost per year [Euro/MW] DC
 land_use_per_solar_MW: 0.01226 # Danish energy agency
 
 #selected tracker
@@ -48,11 +48,11 @@ pv_deg: [0, 0] #0.03 intial + 25yr * 1%/yr
 #battery_control_system_cost: 9_000  # Grid management control system cost[Euro/MW]
 #battery_energy_onm_cost: 0 
 
-battery_energy_cost: 45_000  # [Euro/MWh]
-battery_power_cost: 16_000    # Power conversion system cost [Euro/MW]
-battery_BOP_installation_commissioning_cost: 18_000 # Electric BalanceOfPlant, instal+commission cost [Euro/MW]
-battery_control_system_cost: 4_500  # Grid management control system cost[Euro/MW]
-battery_energy_onm_cost: 0 
+battery_energy_cost: 158_000  # [Euro/MWh]
+battery_power_cost: 212_000    # Power conversion system cost [Euro/MW]
+battery_BOP_installation_commissioning_cost: 0 # Electric BalanceOfPlant, instal+commission cost [Euro/MW]
+battery_control_system_cost: 0  # Grid management control system cost[Euro/MW]
+battery_energy_onm_cost: 9_250 
 
 # EMS and Degradation parameters
 battery_depth_of_discharge: 0.9 # 1 - Minimum energy level in the battery

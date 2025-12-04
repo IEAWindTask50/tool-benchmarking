@@ -4,6 +4,7 @@
 turbine_type: 'iea_10MW'
 hub_height: 165 #119.0 Adjusted to be more similar to HyDesign Turbine
 rotor_diameter: 210 #198.0 Adjusted to be more similar to HyDesign Turbine
+power_thrust_data_file: null
 TSR: 8.0
 operation_model: cosine-loss
 power_thrust_table:
