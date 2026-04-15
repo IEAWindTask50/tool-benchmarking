@@ -381,9 +381,6 @@ farm:
   - 7920.0
   - 7920.0
 
-  turbine_type:
-  - !include lbw_6MW_v4.yaml
-
 
 
 wake:

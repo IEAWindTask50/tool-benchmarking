@@ -1,0 +1,97 @@
+name: technology_config
+description: Wind + solar + battery setup using HyDesign benchmark-like capacities and costs
+technologies:
+  wind:
+    performance_model:
+      model: PYSAMWindPlantPerformanceModel
+    cost_model:
+      model: ATBWindPlantCostModel
+    model_inputs:
+      performance_parameters:
+        num_turbines: 30
+        turbine_rating_kw: 10000
+        hub_height: 130
+        rotor_diameter: 220
+        create_model_from: default
+        config_name: WindPowerSingleOwner
+        pysam_options:
+          Farm:
+            wind_farm_wake_model: 0
+          Losses:
+            ops_strategies_loss: 12.0
+        layout:
+          layout_mode: basicgrid
+          layout_options:
+            row_D_spacing: 7.0
+            turbine_D_spacing: 7.0
+            rotation_angle_deg: 0.0
+            row_phase_offset: 0.0
+            layout_shape: square
+      cost_parameters:
+        capex_per_kW: 1114.507079131952
+        opex_per_kW_per_year: 23.16421934359045
+        cost_year: 2022
+
+  solar:
+    performance_model:
+      model: PYSAMSolarPlantPerformanceModel
+    cost_model:
+      model: ATBUtilityPVCostModel
+    model_inputs:
+      performance_parameters:
+        pv_capacity_kWdc: 225000
+        dc_ac_ratio: 1.5
+        create_model_from: new
+        tilt_angle_func: none
+        tilt: 50.0
+        pysam_options:
+          SystemDesign:
+            gcr: 0.3
+            array_type: 2
+            bifaciality: 0.65
+            inv_eff: 96.0
+            losses: 14.6
+            module_type: 1
+            azimuth: 230
+            rotlim: 45
+          SolarResource:
+            albedo_default: 0.2
+      cost_parameters:
+        capex_per_kWac: 335.0
+        opex_per_kWac_per_year: 6.75
+        cost_year: 2022
+
+  combiner:
+    performance_model:
+      model: GenericCombinerPerformanceModel
+    model_inputs:
+      performance_parameters:
+        commodity: electricity
+        commodity_rate_units: kW
+
+  battery:
+    performance_model:
+      model: SimpleGenericStorage
+    cost_model:
+      model: ATBBatteryCostModel
+    control_strategy:
+      model: DemandOpenLoopStorageController
+    model_inputs:
+      shared_parameters:
+        commodity: electricity
+        commodity_rate_units: kW
+        max_charge_rate: 20000.0
+        max_capacity: 80000.0
+      control_parameters:
+        max_charge_fraction: 1.0
+        min_charge_fraction: 0.1
+        init_charge_fraction: 0.25
+        max_discharge_rate: 20000.0
+        charge_efficiency: 0.98
+        discharge_efficiency: 0.98
+        demand_profile: 20000.0
+      cost_parameters:
+        cost_year: 2022
+        energy_capex: 87.27735265379327
+        power_capex: 38.5
+        opex_fraction: 0.0

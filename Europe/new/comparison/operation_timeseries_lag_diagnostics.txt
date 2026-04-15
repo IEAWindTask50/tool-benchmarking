@@ -1,0 +1,9 @@
+Lag diagnostics based on solar time series:
+best_lag_hours=0
+correlation_at_best_lag=0.9752130111481804
+rmse_at_best_lag_mw=13.55310187004804
+h2integrate_year24_degradation_timeseries_available=False
+h2integrate_battery_series_used=battery_net_power_kW
+h2integrate_battery_power_source=battery_net_power_kW
+h2integrate_battery_power_min_mw=0.00
+h2integrate_battery_power_max_mw=20.00

@@ -1,0 +1,144 @@
+% Benchmark input mapping for HyDesign vs h2integrate
+% Generated for the France benchmark parity study.
+% Requires in preamble:
+% \usepackage{longtable}
+% \usepackage{booktabs}
+% \usepackage{array}
+% \usepackage{tabularx}
+
+\begin{center}
+\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{longtable}{p{0.19\textwidth} p{0.18\textwidth} p{0.24\textwidth} p{0.17\textwidth} p{0.17\textwidth}}
+\caption{Inputs used in the France benchmark study and cross-code variable mapping. Shared inputs are listed first, followed by HyDesign-only inputs, then h2integrate-only inputs.}\\
+\toprule
+Concept & Value used in study & HyDesign variable / location & h2integrate variable / location & Notes \\
+\midrule
+\endfirsthead
+
+\toprule
+Concept & Value used in study & HyDesign variable / location & h2integrate variable / location & Notes \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{5}{r}{Continued on next page} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\multicolumn{5}{l}{\textbf{A. Shared between HyDesign and h2integrate}} \\
+\midrule
+Site latitude & 48.744116 & examples\_sites.csv $\rightarrow$ latitude in evaluate.py & plant\_config.yaml: sites.site.latitude & Same value. \\
+Site longitude & -0.864258 & examples\_sites.csv $\rightarrow$ longitude in evaluate.py & plant\_config.yaml: sites.site.longitude & Same value. \\
+Simulation year & 2012 & hpp\_pars\_shared0.yml: year='2012' & plant\_config.yaml: resource\_year=2012 (wind/solar) & Shared weather year. \\
+Project lifetime & 25 years & hpp\_pars\_shared0.yml: N\_life=25 & plant\_config.yaml: plant.plant\_life=25 & Same value. \\
+Time step & 1 hour & implicit in input\_ts and EMS setup & plant.simulation.dt=3600 s & 8760-hour annual run. \\
+Number of time steps & 8760 & from weather year in evaluate.py workflow & plant.simulation.n\_timesteps=8760 & Leap day removed in weather preprocessor. \\
+Grid capacity & 300 MW & hpp\_pars\_shared0.yml: G\_MW=300 & implied by design and combiner export chain & HyDesign explicit; h2integrate matched by design capacities. \\
+Wind turbine count & 30 & evaluate.py: Nwt=30 & tech\_config.yaml: wind.performance\_parameters.num\_turbines=30 & Same value. \\
+Wind turbine rating & 10 MW & evaluate.py: wt\_rated\_power\_MW=10 & tech\_config.yaml: turbine\_rating\_kw=10000 & Same value. \\
+Wind rotor diameter & 220 m & evaluate.py: rotor\_diameter\_m=220 & tech\_config.yaml: rotor\_diameter=220 & Same value. \\
+Wind hub height & 130 m & evaluate.py: hub\_height\_m=130 & tech\_config.yaml: hub\_height=130 & Same value. \\
+Wind installed capacity & 300 MW & derived (Nwt $\times$ wt\_rated\_power\_MW) & derived (num\_turbines $\times$ turbine\_rating\_kw) & Exact parity. \\
+Solar DC capacity & 225 MWdc & derived (solar\_MW $\times$ DC\_AC\_ratio) & tech\_config.yaml: pv\_capacity\_kWdc=225000 & Exact parity. \\
+Solar AC capacity & 150 MWac & evaluate.py: solar\_MW=150 & derived (pv\_capacity\_kWdc/DC\_AC\_ratio) & Exact parity. \\
+Solar DC/AC ratio & 1.5 & evaluate.py: DC\_AC\_ratio=1.5 & tech\_config.yaml: dc\_ac\_ratio=1.5 & Same value. \\
+Solar tilt & 50 deg & evaluate.py: surface\_tilt\_deg=50 & tech\_config.yaml: tilt=50.0 & Same value. \\
+Solar azimuth & 230 deg & evaluate.py: surface\_azimuth\_deg=230 & tech\_config.yaml: pysam\_options.SystemDesign.azimuth=230 & Same value. \\
+Battery power & 20 MW & evaluate.py: b\_P=20 & tech\_config.yaml: max\_charge\_rate/max\_discharge\_rate=20000 kW & Same value. \\
+Battery energy duration & 4 h & evaluate.py: b\_E\_h=4 & derived from max\_capacity/max\_charge\_rate = 80000/20000 & Same value. \\
+Battery energy capacity & 80 MWh & derived (b\_P $\times$ b\_E\_h) & tech\_config.yaml: max\_capacity=80000 kWh & Same value. \\
+Wind CAPEX coefficient & 1,114,507.079 EUR/MW & hpp\_pars\_shared0.yml: wind\_turbine\_cost + wind\_civil\_works\_cost & tech\_config.yaml: capex\_per\_kW=1114.507079 & Converted units (EUR/MW to EUR/kW). \\
+Wind fixed OPEX coefficient & 23,164.219 EUR/MW/yr & hpp\_pars\_shared0.yml: wind\_fixed\_onm\_cost + wind\_variable\_onm\_cost contribution at matched run & tech\_config.yaml: opex\_per\_kW\_per\_year=23.164219 & Calibrated to matched benchmark OPEX. \\
+Solar CAPEX coefficient & 335,000 EUR/MWac & hpp\_pars\_shared0.yml: solar\_PV\_cost + solar\_hardware\_installation\_cost + solar\_inverter\_cost & tech\_config.yaml: capex\_per\_kWac=335.0 & Converted units (EUR/MW to EUR/kW). \\
+Solar fixed OPEX coefficient & 6,750 EUR/MWac/yr & hpp\_pars\_shared0.yml: solar\_fixed\_onm\_cost scaled to AC basis at DC/AC=1.5 & tech\_config.yaml: opex\_per\_kWac\_per\_year=6.75 & Converted units (EUR/MW to EUR/kW). \\
+Battery CAPEX (energy term) & 87,277.353 EUR/MWh & hpp\_pars\_shared0.yml battery stack mapped to matched battery capex & tech\_config.yaml: battery.cost\_parameters.energy\_capex=87.2773527 (EUR/kWh) & Calibrated equivalent energy-side term. \\
+Battery CAPEX (power term) & 38,500 EUR/MW & matched benchmark decomposition & tech\_config.yaml: battery.cost\_parameters.power\_capex=38.5 (EUR/kW) & Converted units (EUR/MW to EUR/kW). \\
+Battery OPEX fraction & 0 & hpp\_pars\_shared0.yml: battery\_energy\_onm\_cost=0 & tech\_config.yaml: battery.cost\_parameters.opex\_fraction=0.0 & Same intent (zero battery OPEX). \\
+Weather source file & input\_ts\_France\_good\_wind.csv & evaluate.py: input\_ts\_fn from examples & prepare\_shared\_weather.py reads same file and writes resource\_data CSVs & Shared weather parity enforcement. \\
+Wind weather columns used & WS\_1, WS\_100, WD\_1, WD\_100, temp\_air\_1 & input\_ts columns & mapped in prepare\_shared\_weather.py to wind\_speed/wind\_direction/temperature fields & Explicit column mapping. \\
+Solar weather columns used & ghi, dni, dhi, temp\_air\_1, WS\_1, WD\_1 & input\_ts columns & mapped in prepare\_shared\_weather.py to shortwave/direct normal/diffuse radiation and met fields & Explicit column mapping. \\
+Leap-year handling & remove Feb-29 hours if 8784 rows & implicit after year selection in HyDesign workflow & prepare\_shared\_weather.py drops Feb-29 to force 8760 rows & Required for OpenMDAO shape consistency. \\
+
+\midrule
+\multicolumn{5}{l}{\textbf{B. Present only in HyDesign (this study run)}} \\
+\midrule
+Wind specific power input & 263.066 W/m$^2$ & evaluate.py: sp & -- & HyDesign design vector input. \\
+Wind plant density & 7 MW/km$^2$ & evaluate.py: wind\_MW\_per\_km2 & -- & HyDesign layout/area control input. \\
+Wind clearance & 20 m & evaluate.py: clearance & -- & Derived from hub height and rotor diameter. \\
+Battery degradation cost ratio & 8 & evaluate.py: cost\_of\_batt\_degr & -- & EMS penalty control in HyDesign. \\
+Number of battery replacements setting & num\_batteries=5 (model setting) & evaluate.py: hpp\_model(..., num\_batteries=5) & -- & HyDesign internal degradation/replacement control. \\
+Shared CAPEX soft BOS & 0 EUR/MW (forced) & hpp\_pars\_shared0.yml: hpp\_BOS\_soft\_cost=0 & -- & Set to zero for parity. \\
+Shared CAPEX grid connection & 0 EUR/MW (forced) & hpp\_pars\_shared0.yml: hpp\_grid\_connection\_cost=0 & -- & Set to zero for parity. \\
+Shared CAPEX land & 0 EUR/km$^2$ (forced) & hpp\_pars\_shared0.yml: land\_cost=0 & -- & Set to zero for parity. \\
+Wind degradation curve & years [0,25], values [0,0.25] & hpp\_pars\_shared0.yml: wind\_deg\_yr, wind\_deg & -- & HyDesign lifetime degradation model. \\
+PV degradation curve & years [0,1,25], values [0.03,0.03,0.28] & hpp\_pars\_shared0.yml: pv\_deg\_yr, pv\_deg & -- & HyDesign lifetime degradation model. \\
+Battery depth of discharge & 0.9 & hpp\_pars\_shared0.yml: battery\_depth\_of\_discharge & -- & Not explicitly modeled with same variable in this h2integrate setup. \\
+Battery charge efficiency & 0.985 & hpp\_pars\_shared0.yml: battery\_charge\_efficiency & -- & h2integrate uses separate charge/discharge efficiencies. \\
+Peak-price full-power-hours target & 0 & hpp\_pars\_shared0.yml: n\_full\_power\_hours\_expected\_per\_day\_at\_peak\_price & -- & HyDesign EMS-specific. \\
+Peak-price quantile & 0.9 & hpp\_pars\_shared0.yml: peak\_hr\_quantile & -- & HyDesign EMS-specific. \\
+Technology WACC terms & wind=0.06, solar=0.06, battery=0.06 & hpp\_pars\_shared0.yml: wind\_WACC, solar\_WACC, battery\_WACC & -- & HyDesign financial model structure. \\
+Tax rate & 0.22 & hpp\_pars\_shared0.yml: tax\_rate & -- & HyDesign economic model input. \\
+Inflation schedule & years [-3,0,1,25], values [0.10,0.10,0.06,0.06] & hpp\_pars\_shared0.yml: inflation\_yr, inflation & -- & HyDesign inflation curve. \\
+Depreciation schedule & years [0,25], values [0,1] & hpp\_pars\_shared0.yml: depreciation\_yr, depreciation & -- & HyDesign depreciation curve. \\
+Bi-directional BM flag & 0 & hpp\_pars\_shared0.yml: bi\_directional\_status & -- & HyDesign balancing-market setting. \\
+Balancing-market penalty & 2000 EUR/MWh & hpp\_pars\_shared0.yml: penalty\_BM & -- & HyDesign balancing-market setting. \\
+
+\midrule
+\multicolumn{5}{l}{\textbf{C. Present only in h2integrate (this study run)}} \\
+\midrule
+Top-level model config & france\_h2integrate\_benchmark & france\_hybrid.yaml: name & france\_hybrid.yaml: name & h2integrate workflow wrapper. \\
+Output folder & france\_h2integrate\_outputs & -- & driver\_config.yaml: general.folder\_output & h2integrate driver option. \\
+OpenMDAO reports & false & -- & driver\_config.yaml: general.create\_om\_reports=false & Runtime/reporting option. \\
+Wind resource model class & OpenMeteoHistoricalWindResource & -- & plant\_config.yaml: wind\_resource.resource\_model & Resource component choice. \\
+Solar resource model class & OpenMeteoHistoricalSolarResource & -- & plant\_config.yaml: solar\_resource.resource\_model & Resource component choice. \\
+Wind resource file path & benchmark/h2integrate/resource\_data/france\_shared\_wind\_openmeteo\_like.csv & -- & plant\_config.yaml: wind\_resource.resource\_filename & Local preprocessed resource file. \\
+Solar resource file path & benchmark/h2integrate/resource\_data/france\_shared\_solar\_openmeteo\_like.csv & -- & plant\_config.yaml: solar\_resource.resource\_filename & Local preprocessed resource file. \\
+Tech interconnections & wind$\rightarrow$combiner, solar$\rightarrow$combiner, combiner$\rightarrow$battery & -- & plant\_config.yaml: technology\_interconnections & Explicit graph topology. \\
+Resource-to-tech connections & site.wind\_resource$\rightarrow$wind, site.solar\_resource$\rightarrow$solar & -- & plant\_config.yaml: resource\_to\_tech\_connections & Explicit resource wiring. \\
+Wind wake model selector & 0 & -- & tech\_config.yaml: wind.pysam\_options.Farm.wind\_farm\_wake\_model & PySAM option. \\
+Wind operational loss factor & 12.0 & -- & tech\_config.yaml: wind.pysam\_options.Losses.ops\_strategies\_loss & Generation calibration lever. \\
+Wind layout mode & basicgrid & -- & tech\_config.yaml: wind.layout.layout\_mode & Explicit layout algorithm. \\
+Wind row spacing & 7.0 D & -- & tech\_config.yaml: wind.layout.layout\_options.row\_D\_spacing & Layout parameter. \\
+Wind turbine spacing & 7.0 D & -- & tech\_config.yaml: wind.layout.layout\_options.turbine\_D\_spacing & Layout parameter. \\
+Solar model construction mode & new & -- & tech\_config.yaml: solar.performance\_parameters.create\_model\_from=new & PySAM object setup choice. \\
+Solar system losses & 14.6\% & -- & tech\_config.yaml: solar.pysam\_options.SystemDesign.losses=14.6 & PySAM option. \\
+Solar inverter efficiency & 96\% & -- & tech\_config.yaml: solar.pysam\_options.SystemDesign.inv\_eff=96.0 & PySAM option. \\
+Solar GCR & 0.3 & -- & tech\_config.yaml: solar.pysam\_options.SystemDesign.gcr=0.3 & PySAM option. \\
+Battery model class & SimpleGenericStorage & -- & tech\_config.yaml: battery.performance\_model.model & h2integrate storage component. \\
+Battery controller & DemandOpenLoopStorageController & -- & tech\_config.yaml: battery.control\_strategy.model & h2integrate control model. \\
+Battery initial SOC fraction & 0.25 & -- & tech\_config.yaml: battery.control\_parameters.init\_charge\_fraction & Controller parameter. \\
+Battery min SOC fraction & 0.1 & -- & tech\_config.yaml: battery.control\_parameters.min\_charge\_fraction & Controller parameter. \\
+Battery max SOC fraction & 1.0 & -- & tech\_config.yaml: battery.control\_parameters.max\_charge\_fraction & Controller parameter. \\
+Battery charge efficiency & 0.98 & -- & tech\_config.yaml: battery.control\_parameters.charge\_efficiency & Controller parameter. \\
+Battery discharge efficiency & 0.98 & -- & tech\_config.yaml: battery.control\_parameters.discharge\_efficiency & Controller parameter. \\
+Battery demand profile setpoint & 20000 kW & -- & tech\_config.yaml: battery.control\_parameters.demand\_profile=20000 & Controller demand target. \\
+NPV finance model class & NumpyFinancialNPV & -- & plant\_config.yaml: finance\_groups.npv.finance\_model & h2integrate finance stack. \\
+NPV discount rate & 0.1382663181 & -- & plant\_config.yaml: finance\_groups.npv.model\_inputs.discount\_rate & Finance calibration target. \\
+Commodity sell price (NPV model) & 0.089 USD/kWh-equivalent & -- & plant\_config.yaml: finance\_groups.npv.model\_inputs.commodity\_sell\_price & Finance calibration lever. \\
+LCO finance model class & ProFastLCO & -- & plant\_config.yaml: finance\_groups.lco.finance\_model & h2integrate finance stack. \\
+LCO analysis start year & 2022 & -- & plant\_config.yaml: finance\_groups.lco.model\_inputs.params.analysis\_start\_year & ProFAST parameter. \\
+LCO installation time & 0 months & -- & plant\_config.yaml: ...params.installation\_time=0 & ProFAST parameter. \\
+LCO inflation rate & 0.0 & -- & plant\_config.yaml: ...params.inflation\_rate=0.0 & ProFAST parameter. \\
+LCO discount rate & 0.1382663181 & -- & plant\_config.yaml: ...params.discount\_rate & ProFAST parameter. \\
+Debt-equity ratio & 1.72 & -- & plant\_config.yaml: ...params.debt\_equity\_ratio=1.72 & ProFAST parameter. \\
+Property tax and insurance & 0.015 & -- & plant\_config.yaml: ...params.property\_tax\_and\_insurance=0.015 & ProFAST parameter. \\
+Total income tax rate & 0.2574 & -- & plant\_config.yaml: ...params.total\_income\_tax\_rate=0.2574 & ProFAST parameter. \\
+Capital gains tax rate & 0.15 & -- & plant\_config.yaml: ...params.capital\_gains\_tax\_rate=0.15 & ProFAST parameter. \\
+Sales tax rate & 0.0 & -- & plant\_config.yaml: ...params.sales\_tax\_rate=0.0 & ProFAST parameter. \\
+Debt interest rate & 0.046 & -- & plant\_config.yaml: ...params.debt\_interest\_rate=0.046 & ProFAST parameter. \\
+Debt type & Revolving debt & -- & plant\_config.yaml: ...params.debt\_type='Revolving debt' & ProFAST parameter. \\
+Loan period if used & 0 & -- & plant\_config.yaml: ...params.loan\_period\_if\_used=0 & ProFAST parameter. \\
+Cash on hand months & 1 & -- & plant\_config.yaml: ...params.cash\_onhand\_months=1 & ProFAST parameter. \\
+Administrative expense fraction & 0.0 & -- & plant\_config.yaml: ...params.admin\_expense=0.0 & ProFAST parameter. \\
+Capital depreciation type & MACRS & -- & plant\_config.yaml: finance\_groups.lco.model\_inputs.capital\_items.depr\_type & ProFAST capital item setting. \\
+Capital depreciation period & 5 years & -- & plant\_config.yaml: ...capital\_items.depr\_period=5 & ProFAST capital item setting. \\
+Refurbishment vector & [0.0] & -- & plant\_config.yaml: ...capital\_items.refurb=[0.0] & ProFAST capital item setting. \\
+Cost-year inflation adjustment & 0.025 & -- & plant\_config.yaml: cost\_adjustment\_parameters.cost\_year\_adjustment\_inflation & h2integrate cost normalization. \\
+Target dollar year & 2022 & -- & plant\_config.yaml: cost\_adjustment\_parameters.target\_dollar\_year & h2integrate cost normalization. \\
+
+\end{longtable}
+\end{center}

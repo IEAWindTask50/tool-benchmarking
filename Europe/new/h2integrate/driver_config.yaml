@@ -1,0 +1,5 @@
+name: driver_config
+description: Run a single analysis case for France benchmark alignment
+general:
+  folder_output: france_h2integrate_outputs
+  create_om_reports: false

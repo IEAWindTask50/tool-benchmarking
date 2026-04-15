@@ -1,0 +1,86 @@
+name: plant_config
+description: France benchmark site using HyDesign-shared hourly weather resources
+sites:
+  site:
+    latitude: 48.744116
+    longitude: -0.864258
+    resources:
+      wind_resource:
+        resource_model: OpenMeteoHistoricalWindResource
+        resource_parameters:
+          resource_year: 2012
+          resource_dir: benchmark/h2integrate/resource_data
+          resource_filename: france_shared_wind_openmeteo_like.csv
+      solar_resource:
+        resource_model: OpenMeteoHistoricalSolarResource
+        resource_parameters:
+          resource_year: 2012
+          resource_dir: benchmark/h2integrate/resource_data
+          resource_filename: france_shared_solar_openmeteo_like.csv
+
+technology_interconnections:
+  - [wind, combiner, electricity, cable]
+  - [solar, combiner, electricity, cable]
+  - [combiner, battery, electricity, cable]
+
+resource_to_tech_connections:
+  - [site.wind_resource, wind, wind_resource_data]
+  - [site.solar_resource, solar, solar_resource_data]
+
+plant:
+  plant_life: 25
+  simulation:
+    n_timesteps: 8760
+    dt: 3600
+
+finance_parameters:
+  finance_groups:
+    npv:
+      finance_model: NumpyFinancialNPV
+      model_inputs:
+        discount_rate: 0.1382663181212144
+        commodity_sell_price: 0.089
+        save_cost_breakdown: true
+        save_npv_breakdown: true
+    lco:
+      finance_model: ProFastLCO
+      model_inputs:
+        params:
+          analysis_start_year: 2022
+          installation_time: 0
+          inflation_rate: 0.0
+          discount_rate: 0.1382663181212144
+          debt_equity_ratio: 1.72
+          property_tax_and_insurance: 0.015
+          total_income_tax_rate: 0.2574
+          capital_gains_tax_rate: 0.15
+          sales_tax_rate: 0.0
+          debt_interest_rate: 0.046
+          debt_type: Revolving debt
+          loan_period_if_used: 0
+          cash_onhand_months: 1
+          admin_expense: 0.0
+        capital_items:
+          depr_type: MACRS
+          depr_period: 5
+          refurb: [0.0]
+  finance_subgroups:
+    renewables:
+      commodity: electricity
+      commodity_stream: combiner
+      finance_groups: [npv]
+      technologies: [wind, solar]
+    battery:
+      commodity: electricity
+      commodity_stream: battery
+      finance_groups: [npv]
+      technologies: [battery]
+    hybrid:
+      commodity: electricity
+      commodity_stream: combiner
+      finance_groups: [npv, lco]
+      technologies: [wind, solar, battery]
+
+  cost_adjustment_parameters:
+    cost_year_adjustment_inflation: 0.025
+    target_dollar_year: 2022
