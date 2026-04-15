@@ -1,0 +1,57 @@
+
+%%% Preamble Requirements %%%
+% \usepackage{geometry}
+% \usepackage{amsfonts}
+% \usepackage{amsmath}
+% \usepackage{amssymb}
+% \usepackage{tikz}
+
+% Optional packages such as sfmath set through python interface
+% \usepackage{sfmath}
+
+% \usetikzlibrary{arrows,chains,positioning,scopes,shapes.geometric,shapes.misc,shadows}
+
+%%% End Preamble Requirements %%%
+
+\input{"c:/Users/mikf/Anaconda3/envs/hydesign3/Lib/site-packages/pyxdsm/diagram_styles"}
+\begin{tikzpicture}
+
+\matrix[MatrixSetup]{
+%Row 0
+\node [Function] (wind) {$\text{wind}$};&
+\node [DataInter] (wind-combiner) {$\text{electricity via cable}$};&
+&
+\\
+%Row 1
+&
+\node [Function] (combiner) {$\text{combiner}$};&
+&
+\node [DataInter] (combiner-battery) {$\text{electricity via cable}$};\\
+%Row 2
+&
+\node [DataInter] (solar-combiner) {$\text{electricity via cable}$};&
+\node [Function] (solar) {$\text{solar}$};&
+\\
+%Row 3
+&
+&
+&
+\node [Function] (battery) {$\text{battery}$};\\
+};
+
+% XDSM process chains
+
+
+\begin{pgfonlayer}{data}
+\path
+% Horizontal edges
+(wind) edge [DataLine] (wind-combiner)
+(solar) edge [DataLine] (solar-combiner)
+(combiner) edge [DataLine] (combiner-battery)
+% Vertical edges
+(wind-combiner) edge [DataLine] (combiner)
+(solar-combiner) edge [DataLine] (combiner)
+(combiner-battery) edge [DataLine] (battery);
+\end{pgfonlayer}
+
+\end{tikzpicture}

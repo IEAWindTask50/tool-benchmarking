@@ -1,0 +1,2 @@
+case,site_latitude,site_longitude,wind_energy_gwh,solar_energy_gwh,battery_output_gwh,wind_capex_million,solar_capex_million,battery_capex_million,wind_opex_million_per_year,solar_opex_million_per_year,battery_opex_million_per_year,npv_million,lcoe_eur_per_mwh,irr,total_curtailment_gwh
+france_h2integrate,48.744116,-0.864258,1119.767613272657,284.7106157990688,-0.010099999999999996,334.3521237395856,50.25,7.752188212303461,6.949265803077135,1.0125,0.0,420.87652526567496,25.48243390182997,0.13826631812121448,1232.2029408907576

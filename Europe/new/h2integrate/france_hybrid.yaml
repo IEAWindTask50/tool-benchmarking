@@ -1,0 +1,5 @@
+name: france_h2integrate_benchmark
+system_summary: France wind+solar+battery benchmark aligned to HyDesign fixed-evaluation case
+driver_config: driver_config.yaml
+technology_config: tech_config.yaml
+plant_config: plant_config.yaml
